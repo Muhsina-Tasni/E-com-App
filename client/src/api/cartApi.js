@@ -4,7 +4,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://e-com-app-2.onrender.com/api",
+  baseURL: "https://e-com-app-hjey.onrender.com/api",
 });
 
 // Attach token automatically

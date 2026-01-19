@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://e-com-app-2.onrender.com/api" });
+const API = axios.create({ baseURL: "https://e-com-app-hjey.onrender.com/api" });
 
 // attach token if auth
 API.interceptors.request.use((req) => {

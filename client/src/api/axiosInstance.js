@@ -4,7 +4,7 @@
 import axios from "axios";
 
 const API_BASE =
-  import.meta.env.VITE_API_BASE || "https://e-com-app-2.onrender.com";
+  import.meta.env.VITE_API_BASE || "https://e-com-app-hjey.onrender.com";
 
 const instance = axios.create({
   baseURL: API_BASE + "/api",

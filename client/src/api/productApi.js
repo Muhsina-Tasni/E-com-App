@@ -3,7 +3,7 @@
 // client/src/api/productApi.js
 import axios from "axios";
 
-const API_URL = "https://e-com-app-2.onrender.com/api/product";
+const API_URL = "https://e-com-app-hjey.onrender.com/api/product";
 
 // Create product
 export const createProduct = async (productData, token) => {
