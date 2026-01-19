@@ -18,7 +18,7 @@ const AdminStats = () => {
     const fetchStats = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:7000/api/admin/stats",
+          "https://e-com-app-2.onrender.com/api/admin/stats",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-const API_URL = "http://localhost:7000/api/users"; 
+const API_URL = "https://e-com-app-2.onrender.com"; 
 
 // Login
 export const loginUser = async (credentials) => {

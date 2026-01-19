@@ -13,50 +13,6 @@ export const AuthProvider = ({ children }) => {
       : null
   );
 
-  // const handleLogin = async (credentials) => {
-  //   try {
-  //     console.log("Login attempted:", credentials);
-
-  //     const data = await loginUser(credentials);
-
-  //     const token = data?.token;
-  //     const user = data?.data; 
-
-  //     if (token) {
-  //       setToken(token);
-  //       localStorage.setItem("token", token);
-  //     }
-
-  //     if (user) {
-  //       setUser(user);
-  //       localStorage.setItem("user", JSON.stringify(user));
-  //     }
-  //   } catch (error) {
-  //     console.error("Login failed:", error);
-  //     throw error;
-  //   }
-  // };
-
-
-
-
-
-
-
-
-
-// const handleLogin = async (credentials) => {
-//   const res = await loginUser(credentials);
-
-//   setToken(res.token);
-//   setUser(res.user);
-
-//   localStorage.setItem("token", res.token);
-//   localStorage.setItem("user", JSON.stringify(res.user));
-
-//   return res.user; // 🔥 THIS LINE FIXES EVERYTHING
-// };
-
 
 const handleLogin = async (credentials) => {
   try {

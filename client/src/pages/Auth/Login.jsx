@@ -16,16 +16,6 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   try {
-  //     await handleLogin(form);
-  //     navigate("/products");
-  //   } catch (err) {
-  //     setError("Invalid credentials. Please try again.");
-  //   }
-  // };
 
 const handleSubmit = async (e) => {
   e.preventDefault();

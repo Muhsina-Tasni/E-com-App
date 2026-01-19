@@ -18,7 +18,7 @@ const CategoryManager = ({ onCategoryAdded }) => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:7000/api/category", {
+      const res = await axios.get("https://e-com-app-2.onrender.com/api/category", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data);
@@ -41,7 +41,7 @@ const CategoryManager = ({ onCategoryAdded }) => {
 
     try {
       await axios.post(
-        "http://localhost:7000/api/category",
+        "https://e-com-app-2.onrender.com/api/category",
         form,
         {
           headers: { Authorization: `Bearer ${token}` },
