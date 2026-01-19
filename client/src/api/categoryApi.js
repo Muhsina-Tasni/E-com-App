@@ -1,13 +1,63 @@
-import axios from "axios";
+// import axios from "axios";
 
-const API_URL = "https://e-com-app-2.onrender.com/api/category";
+// const API_URL = "https://e-com-app-2.onrender.com/api/category";
+
+// // Create category
+// export const createCategory = async (categoryData, token) => {
+//   try {
+//     const res = await axios.post(API_URL, categoryData, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     return res.data;
+//   } catch (error) {
+//     throw error.response?.data || { message: "Category creation failed" };
+//   }
+// };
+
+// // Fetch categories
+// export const getCategories = async (token) => {
+//   try {
+//     const res = await axios.get(API_URL, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     return res.data;
+//   } catch (error) {
+//     throw error.response?.data || { message: "Failed to fetch categories" };
+//   }
+// };
+
+// // Update category
+// export const updateCategory = async (id, categoryData, token) => {
+//   try {
+//     const res = await axios.put(`${API_URL}/${id}`, categoryData, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     return res.data;
+//   } catch (error) {
+//     throw error.response?.data || { message: "Category update failed" };
+//   }
+// };
+
+// // Delete category
+// export const deleteCategory = async (id, token) => {
+//   try {
+//     const res = await axios.delete(`${API_URL}/${id}`, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     return res.data;
+//   } catch (error) {
+//     throw error.response?.data || { message: "Category delete failed" };
+//   }
+// };
+
+
+
+import API from "./axiosInstance";
 
 // Create category
-export const createCategory = async (categoryData, token) => {
+export const createCategory = async (categoryData) => {
   try {
-    const res = await axios.post(API_URL, categoryData, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await API.post("/category", categoryData);
     return res.data;
   } catch (error) {
     throw error.response?.data || { message: "Category creation failed" };
@@ -15,11 +65,9 @@ export const createCategory = async (categoryData, token) => {
 };
 
 // Fetch categories
-export const getCategories = async (token) => {
+export const getCategories = async () => {
   try {
-    const res = await axios.get(API_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await API.get("/category");
     return res.data;
   } catch (error) {
     throw error.response?.data || { message: "Failed to fetch categories" };
@@ -27,11 +75,9 @@ export const getCategories = async (token) => {
 };
 
 // Update category
-export const updateCategory = async (id, categoryData, token) => {
+export const updateCategory = async (id, categoryData) => {
   try {
-    const res = await axios.put(`${API_URL}/${id}`, categoryData, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await API.put(`/category/${id}`, categoryData);
     return res.data;
   } catch (error) {
     throw error.response?.data || { message: "Category update failed" };
@@ -39,11 +85,9 @@ export const updateCategory = async (id, categoryData, token) => {
 };
 
 // Delete category
-export const deleteCategory = async (id, token) => {
+export const deleteCategory = async (id) => {
   try {
-    const res = await axios.delete(`${API_URL}/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await API.delete(`/category/${id}`);
     return res.data;
   } catch (error) {
     throw error.response?.data || { message: "Category delete failed" };

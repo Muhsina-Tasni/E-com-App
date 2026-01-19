@@ -14,6 +14,8 @@ const cartItems=require("./routes/cartItemsRoutes")
 // const adminRoutes = require("./routes/adminRoutes");
 const adminRoutes = require("./routes/AdminRouter");
 
+const paymentRoutes = require("./routes/paymentRoutes");
+
 
 
 
@@ -37,7 +39,7 @@ app.use("/api/orderitem",orderItems)
 app.use("/api/cartitems",cartItems)
 
 
-
+app.use("/api/payments", paymentRoutes);
 
 
 // app.use("/api/admin", adminRoutes);
