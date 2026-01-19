@@ -2,7 +2,7 @@
 // // routes/productRoutes.js
 const express = require("express");
 const router = express.Router();
-const auth = require("../middleware/authMiddlware");
+const auth = require("../middleware/AuthMiddlware");
 const adminOnly = require("../middleware/adminMiddlware");
 const { createProduct, getProducts ,getProductById,updateProduct,deleteProduct} = require("../controllers/productController");
 
