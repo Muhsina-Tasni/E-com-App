@@ -1,5 +1,4 @@
-
-
+// payment page
 import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
