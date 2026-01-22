@@ -24,7 +24,7 @@ const AddProduct = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("https://e-com-app-2.onrender.com/api/category", {
+      const res = await axios.get("https://e-com-app-hjey.onrender.com/api/category", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data);

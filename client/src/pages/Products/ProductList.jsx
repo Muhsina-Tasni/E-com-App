@@ -11,7 +11,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://e-com-app-2.onrender.com/api/product", {
+        const res = await axios.get("https://e-com-app-hjey.onrender.com/api/product", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProducts(res.data);

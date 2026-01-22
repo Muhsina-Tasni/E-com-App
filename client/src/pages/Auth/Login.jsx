@@ -25,7 +25,7 @@ const handleSubmit = async (e) => {
     const user = await handleLogin(form); // 👈 get user back
 
     // ✅ ROLE BASED REDIRECT
-    if (user.role === "admin") {
+    if (user.role?.toLowerCase() === "admin") {
       navigate("/adminpage");
     } else {
       navigate("/products");

@@ -18,7 +18,7 @@ const CategoryManager = ({ onCategoryAdded }) => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("https://e-com-app-2.onrender.com/api/category", {
+      const res = await axios.get("https://e-com-app-hjey.onrender.com/api/category", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data);
@@ -41,7 +41,7 @@ const CategoryManager = ({ onCategoryAdded }) => {
 
     try {
       await axios.post(
-        "https://e-com-app-2.onrender.com/api/category",
+        "https://e-com-app-hjey.onrender.com/api/category",
         form,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -51,10 +51,23 @@ const CategoryManager = ({ onCategoryAdded }) => {
       setForm({ name: "", description: "" });
       fetchCategories();
       onCategoryAdded(); // refresh dropdown in AddProduct
-    } catch (err) {
-      setError("Failed to add category");
-      console.error(err);
     }
+    //  catch (err) {
+    //   setError("Failed to add category");
+    //   console.error(err);
+    // }
+
+catch (err) {
+  console.error("Backend error:", err.response?.data || err.message);
+
+  setError(
+    err.response?.data?.message ||
+    err.message ||
+    "Failed to add category"
+  );
+}
+
+
   };
 
   return (

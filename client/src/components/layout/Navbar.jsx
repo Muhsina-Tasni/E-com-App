@@ -56,12 +56,24 @@ const Navbar = () => {
               HOME
             </NavLink>
 
-            <NavLink
+            {/* <NavLink
               to="/products"
               className={({ isActive }) => (isActive ? activeClass : normalClass)}
             >
               PRODUCTS
-            </NavLink>
+            </NavLink> */}
+
+
+      {/* Other links */}
+
+      <NavLink
+        to={user?.role === "admin" ? "/adminpage" : "/products"}
+        className={({ isActive }) => (isActive ? activeClass : normalClass)}
+      >
+        PRODUCTS
+      </NavLink>
+ 
+
 
             <NavLink
               to="/offer"

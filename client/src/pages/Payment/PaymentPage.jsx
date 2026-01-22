@@ -30,7 +30,10 @@ const PaymentPage = () => {
     const fetchAddresses = async () => {
       try {
         const data = await getAddresses();
-        setAddresses(data.filter((a) => a.user_id?._id === user?._id));
+        // setAddresses(data.filter((a) => a.user_id?._id === user?._id));
+setAddresses(data);
+
+
       } catch (err) {
         console.error("Failed to fetch addresses", err);
       } finally {
@@ -65,40 +68,90 @@ const PaymentPage = () => {
   };
 
   // Stripe payment handler
+  // const handlePayment = async () => {
+  //   if (!selectedAddress) {
+  //     alert("Please select a delivery address first.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const stripe = await stripePromise;
+
+
+
+  //     // Call your backend to create a checkout session
+  //     const response = await fetch("https://e-com-app-hjey.onrender.com/create-checkout-session", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         // optional: send cart total or items
+  //         addressId: selectedAddress._id,
+  //       }),
+  //     });
+
+
+
+  //     const session = await response.json();
+
+  //     const result = await stripe.redirectToCheckout({
+  //       sessionId: session.id,
+  //     });
+
+  //     if (result.error) {
+  //       alert(result.error.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Payment error:", error);
+  //   }
+  // };
+
   const handlePayment = async () => {
-    if (!selectedAddress) {
-      alert("Please select a delivery address first.");
-      return;
-    }
+  console.log("Button clicked");
 
-    try {
-      const stripe = await stripePromise;
+  if (!selectedAddress) {
+    alert("Please select a delivery address first.");
+    return;
+  }
 
-      // Call your backend to create a checkout session
-      const response = await fetch("https://e-com-app-2.onrender.com/create-checkout-session", {
+  try {
+    const stripe = await stripePromise;
+    console.log("Stripe loaded");
+
+    const response = await fetch(
+      "https://e-com-app-hjey.onrender.com/create-checkout-session",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
-          // optional: send cart total or items
           addressId: selectedAddress._id,
         }),
-      });
-
-      const session = await response.json();
-
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-
-      if (result.error) {
-        alert(result.error.message);
       }
-    } catch (error) {
-      console.error("Payment error:", error);
+    );
+
+    console.log("Response:", response);
+
+    const session = await response.json();
+    console.log("Session:", session);
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    console.log("Stripe result:", result);
+
+    if (result.error) {
+      alert(result.error.message);
     }
-  };
+  } catch (error) {
+    console.error("Payment error:", error);
+  }
+};
+
 
   if (loading) return <div className="p-6">Loading...</div>;
 
