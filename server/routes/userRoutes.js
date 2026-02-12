@@ -20,6 +20,13 @@ router.post("/register", registerUser);
 // @desc   Authenticated user
 router.post("/login", loginUser);
 
+
+// 🔥 IMPORTANT: /me must come BEFORE /:id
+router.get("/me", auth, (req, res) => {
+  res.json(req.user);
+});
+
+
 // Protected routes
 
 //@route  GET /api/users

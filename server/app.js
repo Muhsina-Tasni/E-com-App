@@ -12,7 +12,7 @@ const product=require("./routes/productRoutes")
 const orderItems=require("./routes/orderItemRoutes")
 const cartItems=require("./routes/cartItemsRoutes")
 // const adminRoutes = require("./routes/adminRoutes");
-const adminRoutes = require("./routes/AdminRouter");
+const adminRoutes = require("./routes/adminRouter");
 
 const paymentRoutes = require("./routes/paymentRoutes");
 

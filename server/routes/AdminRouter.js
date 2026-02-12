@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAdminStats } = require("../controllers/AdminController");
+const { getAdminStats } = require("../controllers/adminController");
 const authMiddleware = require("../middleware/AuthMiddlware"); // your JWT middleware
 
 router.get("/stats", authMiddleware, getAdminStats);

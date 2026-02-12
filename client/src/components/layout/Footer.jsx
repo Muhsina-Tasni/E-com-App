@@ -159,7 +159,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-12 pt-6 border-t border-stone-200 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-stone-500">
-            © {new Date().getFullYear()} BookSaw. All rights reserved.
+            © {new Date().getFullYear()} PAGETURNER. All rights reserved.
           </p>
 
           <div className="flex gap-6 text-xs text-stone-500">
