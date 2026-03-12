@@ -11,8 +11,8 @@ const cart=require("./routes/cartRouter")
 const product=require("./routes/productRoutes")
 const orderItems=require("./routes/orderItemRoutes")
 const cartItems=require("./routes/cartItemsRoutes")
-// const adminRoutes = require("./routes/adminRoutes");
-const adminRoutes = require("./routes/adminRouter");
+
+const adminRoutes = require("./routes/adminRoutes");
 
 const paymentRoutes = require("./routes/paymentRoutes");
 
