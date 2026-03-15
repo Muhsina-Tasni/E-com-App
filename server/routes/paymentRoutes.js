@@ -1,4 +1,5 @@
 // const router = require("express").Router();
+const router = express.Router();
 const auth = require("../middleware/AuthMiddlware");
 const { createPayment } = require("../controllers/paymentController");
 
@@ -11,7 +12,7 @@ module.exports = router;
 const express = require("express");
 const Stripe = require("stripe");
 
-const router = express.Router();
+// const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 router.post("/create-checkout-session", async (req, res) => {
