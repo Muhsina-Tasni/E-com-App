@@ -1,5 +1,8 @@
 // const router = require("express").Router();
-const router = express.Router();
+// const router = express.Router();
+const express = require("express");   // 1️⃣ import express
+const router = express.Router();      // 2️⃣ create router
+
 const auth = require("../middleware/AuthMiddlware");
 const { createPayment } = require("../controllers/paymentController");
 
@@ -9,7 +12,7 @@ module.exports = router;
 
 
 
-const express = require("express");
+// const express = require("express");
 const Stripe = require("stripe");
 
 // const router = express.Router();
