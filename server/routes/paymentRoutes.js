@@ -1,19 +1,27 @@
 // const router = require("express").Router();
 // const router = express.Router();
-const express = require("express");   // 1️⃣ import express
-const router = express.Router();      // 2️⃣ create router
+import dotenv from "dotenv";
+dotenv.config();   // ✅ ADD THIS FIRST
 
-const auth = require("../middleware/AuthMiddlware");
-const { createPayment } = require("../controllers/paymentController");
+import express from "express";   // 1️⃣ import express
+// import  router from  express.Router();      // 2️⃣ create router
+import Stripe from "stripe";
+import auth from "../middleware/AuthMiddlware.js";
+import { createPayment } from "../controllers/paymentController.js";
 
+const router = express.Router();
 router.post("/", auth, createPayment);
 
-module.exports = router;
+
 
 
 
 // const express = require("express");
-const Stripe = require("stripe");
+// const Stripe = require("stripe");
+
+
+
+console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
 
 // const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -46,4 +54,4 @@ router.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

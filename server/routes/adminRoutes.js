@@ -1,9 +1,13 @@
 //adminrouter.js
-const express = require("express");
+import express from "express";
+// import router from express.Router();
+
+import { getAdminStats }  from"../controllers/adminController.js"
+import authMiddleware from"../middleware/AuthMiddlware.js"; 
 const router = express.Router();
-const { getAdminStats } = require("../controllers/adminController");
-const authMiddleware = require("../middleware/AuthMiddlware"); 
+
+
 
 router.get("/stats", authMiddleware, getAdminStats);
 
-module.exports = router;
+export default router;

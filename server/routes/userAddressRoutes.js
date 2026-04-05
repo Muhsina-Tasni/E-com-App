@@ -1,7 +1,10 @@
-const express = require("express");
+import express from "express";
+// import router from express.Router();
+import auth from "../middleware/AuthMiddlware.js";
+import { createAddress, getAddresses, getAddressesById, updateAddress, deleteAddress } from "../controllers/userAddressController.js";
+
+
 const router = express.Router();
-const auth = require("../middleware/AuthMiddlware");
-const { createAddress, getAddresses, getAddressesById, updateAddress, deleteAddress } = require("../controllers/userAddressController");
 
 router.post("/", auth, createAddress);
 router.get("/", auth, getAddresses);
@@ -9,4 +12,4 @@ router.get("/:id", auth, getAddressesById);
 router.put("/:id", auth, updateAddress);
 router.delete("/:id", auth, deleteAddress);
 
-module.exports = router;
+export default router;

@@ -1,15 +1,18 @@
-const express = require("express");
-const router = express.Router();
-const auth = require("../middleware/AuthMiddlware");
+import  express from "express"
+// import  router from  express.Router();
+import auth from "../middleware/AuthMiddlware.js";
 
-const {
+import {
   registerUser,
   loginUser,
   getUsers,
   getUserById,
   updateUser,
-  deleteUser,} = require("../controllers/userController");
+  deleteUser,} from "../controllers/userController.js"
 
+
+
+  const router = express.Router();
 // Public routes
 
 // @route  POST /api/users/register
@@ -45,4 +48,4 @@ router.put("/:id", auth, updateUser);
 //@desc   for delete users by id
 router.delete("/:id", auth, deleteUser);
 
-module.exports = router;
+export default router;

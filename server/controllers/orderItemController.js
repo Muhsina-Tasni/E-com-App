@@ -1,9 +1,9 @@
-const OrderItem = require("../models/OrderItems");
-const httpStatus = require("../constants/httpStatus");
-const messages = require("../constants/messages");
+import OrderItem from"../models/OrderItems.js";
+import httpStatus from "../constants/httpStatus.js";
+import messages from "../constants/messages.js";
 
 // Add order item
-const addOrderItem = async (req, res) => {
+export const addOrderItem = async (req, res) => {
   try {
     const { order_id, product_id, quantity, price } = req.body;
     const item = new OrderItem({ order_id, product_id, quantity, price });
@@ -15,7 +15,7 @@ const addOrderItem = async (req, res) => {
 };
 
 // Get all order items
-const getOrderItems = async (req, res) => {
+export const getOrderItems = async (req, res) => {
   try {
     const items = await OrderItem.find();
     res.status(httpStatus.OK).json(items);
@@ -25,7 +25,7 @@ const getOrderItems = async (req, res) => {
 };
 
 // Get order item by ID
-const getOrderItemById = async (req, res) => {
+export const getOrderItemById = async (req, res) => {
   try {
     const item = await OrderItem.findById(req.params.id);
     if (!item) return res.status(httpStatus.NOT_FOUND).json({ message: messages.ORDER_ITEM_NOT_FOUND });
@@ -36,7 +36,7 @@ const getOrderItemById = async (req, res) => {
 };
 
 // Update order item
-const updateOrderItem = async (req, res) => {
+export const updateOrderItem = async (req, res) => {
   try {
     const item = await OrderItem.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!item) return res.status(httpStatus.NOT_FOUND).json({ message: messages.ORDER_ITEM_NOT_FOUND });
@@ -47,7 +47,7 @@ const updateOrderItem = async (req, res) => {
 };
 
 // Delete order item
-const deleteOrderItem = async (req, res) => {
+export const deleteOrderItem = async (req, res) => {
   try {
     const item = await OrderItem.findByIdAndDelete(req.params.id);
     if (!item) return res.status(httpStatus.NOT_FOUND).json({ message: messages.ORDER_ITEM_NOT_FOUND });
@@ -57,4 +57,4 @@ const deleteOrderItem = async (req, res) => {
   }
 };
 
-module.exports = { addOrderItem, getOrderItems, getOrderItemById, updateOrderItem, deleteOrderItem };
+// export default { addOrderItem, getOrderItems, getOrderItemById, updateOrderItem, deleteOrderItem };

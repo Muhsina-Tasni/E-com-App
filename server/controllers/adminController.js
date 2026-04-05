@@ -1,7 +1,8 @@
-const Product = require("../models/Product");
-const Category = require("../models/Category");
 
-exports.getAdminStats = async (req, res) => {
+import Product from "../models/Product.js"
+import Category from "../models/Category.js";
+
+export const getAdminStats = async (req, res) => {
   try {
     const totalProducts = await Product.countDocuments();
     const totalCategories = await Category.countDocuments();

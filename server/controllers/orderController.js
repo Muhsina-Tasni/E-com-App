@@ -1,10 +1,10 @@
-const Order = require("../models/Order");
-const httpStatus = require("../constants/httpStatus");
-const messages = require("../constants/messages");
+import Order from "../models/Order.js";
+import httpStatus from "../constants/httpStatus.js";
+import messages from "../constants/messages.js";
 
 
 // Create Order
-const createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
   try {
     const { user_id, shippingAddress, orderDate, status, totalAmount } = req.body;
     const order = new Order({ user_id, shippingAddress, orderDate, status, totalAmount });
@@ -17,7 +17,7 @@ const createOrder = async (req, res) => {
 
 
 // Get all orders
-const getOrders = async (req, res) => {
+export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find();
     res.status(httpStatus.OK).json(orders);
@@ -27,7 +27,7 @@ const getOrders = async (req, res) => {
 };
 
 // Get order by ID
-const getOrderById = async (req, res) => {
+export const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
     if (!order) return res.status(httpStatus.NOT_FOUND).json({ message: messages.ORDER_NOT_FOUND });
@@ -38,7 +38,7 @@ const getOrderById = async (req, res) => {
 };
 
 // Update order
-const updateOrder = async (req, res) => {
+export const updateOrder = async (req, res) => {
   try {
     const order = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!order) return res.status(httpStatus.NOT_FOUND).json({ message: messages.ORDER_NOT_FOUND });
@@ -49,7 +49,7 @@ const updateOrder = async (req, res) => {
 };
 
 // Delete order
-const deleteOrder = async (req, res) => {
+export const deleteOrder = async (req, res) => {
   try {
     const order = await Order.findByIdAndDelete(req.params.id);
     if (!order) return res.status(httpStatus.NOT_FOUND).json({ message: messages.ORDER_NOT_FOUND });
@@ -59,4 +59,7 @@ const deleteOrder = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, getOrders, getOrderById, updateOrder, deleteOrder };
+
+
+    // export default { createOrder, getOrders, getOrderById, updateOrder, deleteOrder };
+ 

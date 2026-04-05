@@ -29,9 +29,9 @@
 // }
 
 // module.exports = sendEmail;
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer"
 
-const sendEmail = async ({ to, subject, html }) => {
+export const sendEmail = async ({ to, subject, html }) => {
   try {
     console.log("📌 Email function called"); // ✅ HERE
 
@@ -58,4 +58,4 @@ const sendEmail = async ({ to, subject, html }) => {
   }
 };
 
-module.exports = sendEmail;
+// export default sendEmail;

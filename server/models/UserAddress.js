@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import  mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema(
   {
@@ -36,4 +36,4 @@ const addressSchema = new mongoose.Schema(
   { timestamps: true } // adds createdAt & updatedAt automatically
 );
 
-module.exports = mongoose.model("Address", addressSchema);
+export default mongoose.model("Address", addressSchema);

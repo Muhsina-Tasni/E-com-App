@@ -1,7 +1,7 @@
 
 
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const cartItemSchema = new mongoose.Schema(
   {
@@ -25,4 +25,4 @@ const cartItemSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("CartItem", cartItemSchema);
+export default mongoose.model("CartItem", cartItemSchema);

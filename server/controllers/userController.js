@@ -1,9 +1,10 @@
-const User = require("../models/User");
-const sendEmail =require("../utils/sendEmail")
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const httpStatus = require("../constants/httpStatus");
-const messages = require("../constants/messages");
+import User from "../models/User.js";
+// import sendEmail from "../utils/sendEmail.js"
+import { sendEmail } from "../utils/sendEmail.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import httpStatus from "../constants/httpStatus.js";
+import messages from "../constants/messages.js";
 
 console.log("🔥 authController file loaded");
 
@@ -32,7 +33,7 @@ console.log("🔥 authController file loaded");
 //   }
 // };
 // / Register
-const registerUser = async (req, res) => {
+ export const registerUser = async (req, res) => {
   try {
 
       console.log("📌 Register API hit");   // ✅ HERE
@@ -93,7 +94,7 @@ console.log("📌 Sending email to:", email); // ✅ HERE
   }
 };
 // Login
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -120,16 +121,10 @@ const loginUser = async (req, res) => {
 
 
 
-
-
-
-
-
-
 //@desc    Get all user
 //@route   GET /api/users
 //@access  Admin
-const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
     res.status(httpStatus.OK).json(users);
@@ -141,7 +136,7 @@ const getUsers = async (req, res) => {
 //@desc    Get user by id
 //@route   POST /api/users/id
 //@access  Admin/User
-const getUserById = async (req, res) => {
+export const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user)
@@ -155,7 +150,7 @@ const getUserById = async (req, res) => {
 //@desc    Update user
 //@route   PUT /api/users/id
 //@access  Amin/User
-const updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!user)
@@ -169,7 +164,7 @@ const updateUser = async (req, res) => {
 //@desc    Delete user
 //@route   DELETE /api/users/id
 //@access  Admin
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user)
@@ -180,7 +175,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUsers, getUserById, updateUser, deleteUser };
+// export default { registerUser, loginUser, getUsers, getUserById, updateUser, deleteUser };
 
 
 

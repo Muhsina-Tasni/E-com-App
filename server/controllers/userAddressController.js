@@ -1,8 +1,8 @@
 
-const Address = require("../models/UserAddress");
+import Address from "../models/UserAddress.js";
 
 // CREATE
-const createAddress = async (req, res) => {
+export const createAddress = async (req, res) => {
   try {
     const { street, city, state, country, pincode } = req.body;
 
@@ -28,7 +28,7 @@ const createAddress = async (req, res) => {
 };
 
 // GET all addresses for logged in user
-const getAddresses = async (req, res) => {
+export const getAddresses = async (req, res) => {
   try {
     const addresses = await Address.find({ user_id: req.user.id });
     res.status(200).json(addresses);
@@ -38,7 +38,7 @@ const getAddresses = async (req, res) => {
 };
 
 // GET by user id
-const getAddressesById = async (req, res) => {
+export const getAddressesById = async (req, res) => {
   try {
     const addresses = await Address.find({ user_id: req.params.id });
     res.status(200).json(addresses);
@@ -48,7 +48,7 @@ const getAddressesById = async (req, res) => {
 };
 
 // UPDATE
-const updateAddress = async (req, res) => {
+export const updateAddress = async (req, res) => {
   try {
     const address = await Address.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -61,7 +61,7 @@ const updateAddress = async (req, res) => {
 };
 
 // DELETE
-const deleteAddress = async (req, res) => {
+export const deleteAddress = async (req, res) => {
   try {
     const address = await Address.findByIdAndDelete(req.params.id);
     if (!address) return res.status(404).json({ message: "Address not found" });
@@ -71,10 +71,10 @@ const deleteAddress = async (req, res) => {
   }
 };
 
-module.exports = {
-  createAddress,
-  getAddresses,
-  getAddressesById,
-  updateAddress,
-  deleteAddress,
-};
+// export default {
+//   createAddress,
+//   getAddresses,
+//   getAddressesById,
+//   updateAddress,
+//   deleteAddress,
+// }

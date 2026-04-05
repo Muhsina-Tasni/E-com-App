@@ -27,10 +27,12 @@
 // };
 
 
+/////////////////////////////////////////
+import Payment from "../models/Payment.js";
 
-const Payment = require("../models/Payment");
 
-const createPayment = async (req, res) => {
+
+export const createPayment = async (req, res) => {
   try {
     const { order_id, paymentMethod, amount, transactionId } = req.body;
 
@@ -65,4 +67,4 @@ const createPayment = async (req, res) => {
 };
 
 
-module.exports = {createPayment}
+// export default {createPayment}

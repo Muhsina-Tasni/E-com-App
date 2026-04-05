@@ -15,11 +15,13 @@
 // module.exports = router;
 
 // routes/categoryRoutes.js
-const express = require("express");
-const router = express.Router();
-const auth = require("../middleware/AuthMiddlware");
+import express from "express";
+// import router from express.Router() 
+import auth from "../middleware/AuthMiddlware.js"
 
-const { createCategory, getCategories, updateCategory, deleteCategory,getCategoryById } = require("../controllers/categoryController");
+import { createCategory, getCategories, updateCategory, deleteCategory,getCategoryById } from "../controllers/categoryController.js"
+
+const router = express.Router();
 
 router.post("/", auth, createCategory);
 router.get("/", getCategories);
@@ -27,4 +29,4 @@ router.put("/:id", auth,  updateCategory);
 router.delete("/:id", auth, deleteCategory);
  router.get("/:id", auth, getCategoryById);
 
-module.exports = router;
+export default router;

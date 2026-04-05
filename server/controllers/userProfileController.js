@@ -1,11 +1,11 @@
 
 
-const UserProfile = require("../models/UserProfile");
-const httpStatus = require("../constants/httpStatus");
-const messages = require("../constants/messages");
+import UserProfile from "../models/UserProfile.js";
+import httpStatus from "../constants/httpStatus.js";
+import messages  from "../constants/messages.js";
 
 // Create profile
-const createProfile = async (req, res) => {
+ export const createProfile = async (req, res) => {
   try {
     const { user_id, phone, dob, gender } = req.body;
 
@@ -14,27 +14,27 @@ const createProfile = async (req, res) => {
 
     res.status(httpStatus.CREATED).json(profile);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
 
 // Get profile by userId
-const getProfileByUserId = async (req, res) => {
+export const getProfileByUserId = async (req, res) => {
   try {
     const profile = await UserProfile.findOne({ user_id: req.params.id });
 
     if (!profile) {
-      return res.status(404).json({ message: "Profile not found" });
+      return res.status(httpStatus.NOT_FOUND).json({ message: "Profile not found" });
     }
 
-    res.status(200).json(profile);
+    res.status(httpStatus.OK).json(profile);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
 
 // Update OR create profile
-const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
   try {
     const { phone, dob, gender } = req.body;
 
@@ -49,7 +49,7 @@ const updateProfile = async (req, res) => {
         gender,
       });
 
-      return res.status(201).json(profile);
+      return res.status(httpStatus.CREATED).json(profile);
     }
 
     // Update existing
@@ -59,30 +59,30 @@ const updateProfile = async (req, res) => {
 
     await profile.save();
 
-    res.status(200).json(profile);
+     res.status(httpStatus.OK).json(profile);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
 
 // Delete profile
-const deleteProfile = async (req, res) => {
+export const deleteProfile = async (req, res) => {
   try {
     const profile = await UserProfile.findByIdAndDelete(req.params.id);
 
     if (!profile) {
-      return res.status(404).json({ message: "Profile not found" });
+      return res.status(httpStatus.NOT_FOUND).json({ message: "Profile not found" });
     }
 
-    res.status(200).json({ message: "Profile deleted" });
+     res.status(httpStatus.OK).json({ message: "Profile deleted" });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
 
-module.exports = {
-  createProfile,
-  getProfileByUserId,
-  updateProfile,
-  deleteProfile,
-};
+// export default {
+//   createProfile,
+//   getProfileByUserId,
+//   updateProfile,
+//   deleteProfile,
+// };

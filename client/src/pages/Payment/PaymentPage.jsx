@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { getAddresses, addAddress } from "../../api/addressApi";
-
+import { makePayment } from "../../api/paymentApi";
 const stripePromise = loadStripe(
   "pk_test_51SqtwF3EvLOKgfejguOL8p6c9p8xzK3gajHy57JLjgxcmsATzLe6tCgWTzjkf9IRECkvtWeDtTJC90O2ZayBZK7400i5mOzfHR"
 );
@@ -151,34 +151,110 @@ setAddresses(data);
 //   }
 // };
 
+// const handlePayment = async () => {
+//   try {
+//     const stripe = await stripePromise;
+
+//     const response = await fetch(
+//       "https://e-com-app-hjey.onrender.com/create-checkout-session",
+//       {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//       }
+//     );
+
+//     const session = await response.json();
+
+//     const result = await stripe.redirectToCheckout({
+//       sessionId: session.id,
+//     });
+
+//     if (result.error) {
+//       alert(result.error.message);
+//     }
+//   } catch (err) {
+//     console.error("Stripe error:", err);
+//   }
+// };
 const handlePayment = async () => {
+  console.log("🔥 Button clicked");
+
+  if (!selectedAddress) {
+    alert("Please select a delivery address first.");
+    return;
+  }
+
   try {
     const stripe = await stripePromise;
+    console.log("✅ Stripe loaded");
 
     const response = await fetch(
       "https://e-com-app-hjey.onrender.com/create-checkout-session",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          addressId: selectedAddress._id,
+        }),
       }
     );
 
+    console.log("📡 Response:", response);
+
     const session = await response.json();
+    console.log("💳 Session:", session);
+
+    if (!session.id) {
+      alert("Session ID not received!");
+      return;
+    }
 
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
 
+    console.log("➡️ Redirect result:", result);
+
     if (result.error) {
       alert(result.error.message);
     }
   } catch (err) {
-    console.error("Stripe error:", err);
+    console.error("❌ Payment error:", err);
   }
 };
 
 
 
+// const handlePayment = async () => {
+//   console.log("🔥 Button clicked");
+
+//   if (!selectedAddress) {
+//     alert("Please select a delivery address first.");
+//     return;
+//   }
+
+//   try {
+//     const stripe = await stripePromise;
+
+//     const session = await makePayment({
+//       addressId: selectedAddress._id,
+//     });
+
+//     console.log("💳 Session:", session);
+
+//     const result = await stripe.redirectToCheckout({
+//       sessionId: session.id,
+//     });
+
+//     if (result.error) {
+//       alert(result.error.message);
+//     }
+//   } catch (err) {
+//     console.error("❌ Payment error:", err);
+//   }
+// };
 
   if (loading) return <div className="p-6">Loading...</div>;
 

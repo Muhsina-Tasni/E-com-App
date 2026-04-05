@@ -1,14 +1,14 @@
 
 
 
-const CartItem = require("../models/CartItems");
-const Cart = require("../models/Cart");
-const httpStatus = require("../constants/httpStatus");
-const messages = require("../constants/messages");
-const mongoose = require("mongoose");
+import CartItem  from "../models/CartItems.js"
+import Cart from "../models/Cart.js"
+import httpStatus from"../constants/httpStatus.js";
+import messages from "../constants/messages.js"
+import mongoose from "mongoose"
 
 // Add item to cart
-const addCartItem = async (req, res) => {
+export const addCartItem = async (req, res) => {
   try {
     const { user_id, product_id, quantity = 1 } = req.body;
     if (!user_id || !product_id)
@@ -74,7 +74,7 @@ const addCartItem = async (req, res) => {
 //     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
 //   }
 // };
-const getCartItemsByUser = async (req, res) => {
+export const getCartItemsByUser = async (req, res) => {
   try {
     const userId = req.params.userId;
 
@@ -108,7 +108,7 @@ const getCartItemsByUser = async (req, res) => {
 };
 
 // Update cart item
-const updateCartItem = async (req, res) => {
+export const updateCartItem = async (req, res) => {
   try {
     const { quantity } = req.body;
     const item = await CartItem.findByIdAndUpdate(req.params.id, { quantity }, { new: true });
@@ -120,7 +120,7 @@ const updateCartItem = async (req, res) => {
 };
 
 // Delete cart item
-const deleteCartItem = async (req, res) => {
+export const deleteCartItem = async (req, res) => {
   try {
     const item = await CartItem.findByIdAndDelete(req.params.id);
     if (!item) return res.status(httpStatus.NOT_FOUND).json({ message: messages.CART_ITEM_NOT_FOUND });
@@ -130,4 +130,4 @@ const deleteCartItem = async (req, res) => {
   }
 };
 
-module.exports = { addCartItem, getCartItemsByUser, updateCartItem, deleteCartItem };
+

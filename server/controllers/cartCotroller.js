@@ -1,15 +1,14 @@
 
-
- const Cart = require("../models/Cart");
-const httpStatus = require("../constants/httpStatus");
-const messages = require("../constants/messages");
+import Cart from "../models/Cart.js";
+import httpStatus from "../constants/httpStatus.js";
+import messages from "../constants/messages.js";
 
 // Create cart for a user (if not exists)
-const createCart = async (req, res) => {
+export const createCart = async (req, res) => {
   try {
     const { user_id } = req.body;
     if (!user_id)
-      return res.status(httpStatus.BAD_REQUEST).json({ message: "User ID is required" });
+   return res.status(httpStatus.BAD_REQUEST).json({ message: "User ID is required" });
 
     let cart = await Cart.findOne({ user_id });
     if (!cart) {
@@ -23,7 +22,7 @@ const createCart = async (req, res) => {
 };
 
 // Get cart by user id
-const getCartByUser = async (req, res) => {
+export const getCartByUser = async (req, res) => {
   try {
     const userId = req.params.userId;
     const cart = await Cart.findOne({ user_id: userId });
@@ -36,4 +35,4 @@ const getCartByUser = async (req, res) => {
   }
 };
 
-module.exports = { createCart, getCartByUser };
+
