@@ -49,11 +49,34 @@ const ProductCard = ({ product }) => {
 //   }
 // };
 
+// const handleAddToCart = async () => {
+//   if (!user) {
+//     alert("Please login first");
+//     return;
+//   }
+
+//   try {
+//     await addToCart({
+//       user_id: user._id,
+//       product_id: product._id,
+//       quantity: 1,
+//     });
+
+//     alert("Added to cart successfully ✅");
+//   } catch (err) {
+//     console.error("Add to cart failed:", err);
+//     // alert("Add to cart failed");
+//     console.error(err.response?.data);
+//   }
+// };
+
 const handleAddToCart = async () => {
   if (!user) {
     alert("Please login first");
     return;
   }
+
+  setLoading(true);
 
   try {
     await addToCart({
@@ -64,8 +87,10 @@ const handleAddToCart = async () => {
 
     alert("Added to cart successfully ✅");
   } catch (err) {
-    console.error("Add to cart failed:", err);
+    console.error(err.response?.data || err.message);
     alert("Add to cart failed");
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -112,7 +137,8 @@ const handleAddToCart = async () => {
         // </button>
         <button className="mt-3 w-full bg-amber-600 text-white py-2 rounded disabled:opacity-50"
         onClick={handleAddToCart}>
-  Add to Cart
+  {/* Add to Cart */}
+  {loading ? "Adding..." : "Add to Cart"}
 </button>
 
       )}

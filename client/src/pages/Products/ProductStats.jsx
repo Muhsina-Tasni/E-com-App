@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import { getAdminStats } from "../../api/adminApi";
 
 const AdminStats = () => {
   const { token } = useContext(AuthContext);
@@ -17,14 +17,8 @@ const AdminStats = () => {
 
     const fetchStats = async () => {
       try {
-        const res = await axios.get(
-          "https://e-com-app-hjey.onrender.com/api/admin/stats",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-
-        setStats(res.data);
+        const data = await getAdminStats();
+        setStats(data);
       } catch (error) {
         console.error("Error loading admin stats", error);
       }

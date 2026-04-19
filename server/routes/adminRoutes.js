@@ -3,11 +3,11 @@ import express from "express";
 // import router from express.Router();
 
 import { getAdminStats }  from"../controllers/adminController.js"
-import authMiddleware from"../middleware/AuthMiddlware.js"; 
+import {auth} from"../middleware/authMiddleware.js"; 
 const router = express.Router();
 
 
 
-router.get("/stats", authMiddleware, getAdminStats);
+router.get("/stats", auth, getAdminStats);
 
 export default router;

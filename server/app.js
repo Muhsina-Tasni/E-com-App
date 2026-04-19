@@ -30,7 +30,7 @@ app.use("/api/cart", cart);
 app.use("/api/product", product);
 app.use("/api/orderitem", orderItems);
 app.use("/api/cartitems", cartItems);
-app.use("/api/payments", paymentRoutes);
+app.use("/api/payment", paymentRoutes);
 app.use("/api/admin", adminRoutes);
 
 export default app;

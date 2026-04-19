@@ -15,16 +15,31 @@ import httpStatus from "../constants/httpStatus.js";
   }
 };
 
-// Get all categories
- export const getCategories = async (req, res) => {
+// Get all categories (plain 200/500 avoids bad deploys using bare `OK` / import mismatches)
+export const getCategories = async (req, res) => {
   try {
-    const categories = await Category.find();
-    res.status(OK).json(categories);
+    const categories = await Category.find().lean();
+    return res.status(200).json(categories);
   } catch (err) {
-    // res.status(INTERNAL_SERVER_ERROR).json({ message: err.message });
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({message:err.message})
+    console.error("getCategories:", err);
+    return res.status(500).json({ message: err.message });
   }
 };
+
+
+// export const getCategories = async (req, res) => {
+//   try {
+//     const categories = await Category.find();
+//     console.log("Categories fetched:", categories); // 👈 add this
+//     res.status(200).json(categories);
+//   } catch (err) {
+//     console.error("Category fetch error:", err); // 👈 ADD THIS
+//     res.status(500).json({ message: err.message });
+//   }
+// };
+
+
+
 
 // Get category by ID
 export const getCategoryById = async (req, res) => {
@@ -59,4 +74,4 @@ export const deleteCategory = async (req, res) => {
   }
 };
 
-// export default { createCategory, getCategories, getCategoryById, updateCategory, deleteCategory };
+

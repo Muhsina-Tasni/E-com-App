@@ -1,24 +1,34 @@
 
-import axios from "axios";
 
-const API_URL = "https://e-com-app-hjey.onrender.com/api/users"; 
+// import API from "./axiosInstance";
 
-// Login
+// // Login
+// export const loginUser = async (credentials) => {
+//   try {
+//     const res = await API.post("/users/login", credentials);
+//     return res.data; // should return { token, user }
+//   } catch (error) {
+//     throw error.response?.data || { message: "Login failed" };
+//   }
+// };
+
+// // Register
+// export const registerUser = async (userData) => {
+//   try {
+//     const res = await API.post("/users/register", userData);
+//     return res.data; // could be { message, user } or { token }
+//   } catch (error) {
+//     throw error.response?.data || { message: "Registration failed" };
+//   }
+// };
+import API from "./axiosInstance";
+
 export const loginUser = async (credentials) => {
-  try {
-    const res = await axios.post(`${API_URL}/login`, credentials);
-    return res.data; // should return { token, user }
-  } catch (error) {
-    throw error.response?.data || { message: "Login failed" };
-  }
+  const res = await API.post("/users/login", credentials);
+  return res.data;
 };
 
-// Register
-export const registerUser = async (userData) => {
-  try {
-    const res = await axios.post(`${API_URL}/register`, userData);
-    return res.data; // could be { message, user } or { token }
-  } catch (error) {
-    throw error.response?.data || { message: "Registration failed" };
-  }
+export const registerUser = async (data) => {
+  const res = await API.post("/users/register", data);
+  return res.data;
 };

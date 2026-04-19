@@ -1,6 +1,6 @@
 import express from "express";
 // import router from express.Router();
-import auth from "../middleware/AuthMiddlware.js";
+import {auth }from "../middleware/authMiddleware.js";
 import { createAddress, getAddresses, getAddressesById, updateAddress, deleteAddress } from "../controllers/userAddressController.js";
 
 

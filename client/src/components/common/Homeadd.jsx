@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCategories } from "../../api/categoryApi";
+import { getCategories, normalizeCategoryList } from "../../api/categoryApi";
 
 const Homeadd = () => {
   const navigate = useNavigate();
@@ -13,10 +13,15 @@ const Homeadd = () => {
     const loadCategories = async () => {
       try {
         const data = await getCategories();
-        setCategories(data.categories || data);
+        setCategories(normalizeCategoryList(data));
       } catch (err) {
         console.error(err);
-        setError("Failed to load categories");
+        const apiMsg = err?.response?.data?.message;
+        setError(
+          apiMsg
+            ? `Categories: ${apiMsg}`
+            : err?.message || "Failed to load categories"
+        );
       } finally {
         setLoading(false);
       }

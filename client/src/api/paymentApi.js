@@ -1,4 +1,4 @@
-import API from "./axiosInstance";
+
 
 // export const makePayment = async (data) => {
 //   try {
@@ -8,9 +8,24 @@ import API from "./axiosInstance";
 //     throw error.response?.data || { message: "Payment failed" };
 //   }
 // };
-export const makePayment = async (data) => {
+// export const makePayment = async (data) => {
+//   try {
+//     const res = await API.post("/payments/payment", data);
+//     return res.data;
+//   } catch (error) {
+//     throw error.response?.data || { message: "Payment failed" };
+//   }
+// };
+
+
+import API from "./axiosInstance";
+
+export const createCheckoutSession = async (data) => {
   try {
-    const res = await API.post("/payment/create-checkout-session", data);
+    const res = await API.post(
+      "/payments/create-checkout-session", // ✅ correct path
+      data
+    );
     return res.data;
   } catch (error) {
     throw error.response?.data || { message: "Payment failed" };

@@ -76,7 +76,7 @@ const navigate = useNavigate();
 
   // Total price of cart
   const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.quantity * (item.product?.price || 0),
+    (sum, item) => sum + item.quantity * (item.product_id?.price || item.product?.price) ,
     0
   );
 
@@ -119,13 +119,24 @@ const navigate = useNavigate();
           >
             Proceed to Checkout
           </button> */}
+{/* <button
+  // onClick={() => navigate("/checkout")}
+  onClick={() =>
+  navigate("/checkout", { state: { cartItems } }) // ✅ send cart
+}
+  className="px-4 py-2 bg-green-600 text-white rounded"
+>
+  Proceed to Checkout
+</button> */}
 <button
-  onClick={() => navigate("/checkout")}
+  onClick={() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    navigate("/checkout");
+  }}
   className="px-4 py-2 bg-green-600 text-white rounded"
 >
   Proceed to Checkout
 </button>
-
 
 
         </div>

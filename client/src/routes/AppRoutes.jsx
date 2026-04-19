@@ -80,7 +80,7 @@ const AppRoutes = () => {
 
 
 
-<Route path="/admin/categories"
+<Route path="admin/categories"
           element={
             <ProtectedRoute>
             <CategoryManager/>
@@ -88,13 +88,6 @@ const AppRoutes = () => {
           }
         />
 
-<Route path="/cart"
-          element={
-            <ProtectedRoute>
-              <CartPage/>
-            </ProtectedRoute>
-          }
-        />
 
 
 

@@ -1,14 +1,11 @@
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState, useEffect } from "react";
 import { createProduct } from "../../api/productApi";
-import axios from "axios";
+import { getCategories, normalizeCategoryList } from "../../api/categoryApi";
 import ProductList from "./ProductList";
 import AdminStats from "./ProductStats";
 import CategoryManager from "../Category/CategoryManager";
 
 const AddProduct = () => {
-  const { token } = useContext(AuthContext);
-
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -24,18 +21,16 @@ const AddProduct = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("https://e-com-app-hjey.onrender.com/api/category", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCategories(res.data);
+      const data = await getCategories();
+      setCategories(normalizeCategoryList(data));
     } catch (err) {
-      console.error(err);
+      console.error("Category fetch error:", err);
     }
   };
 
   useEffect(() => {
     fetchCategories();
-  }, [token]);
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -47,7 +42,7 @@ const AddProduct = () => {
     setSuccess("");
 
     try {
-      const result = await createProduct(form, token);
+      const result = await createProduct(form);
       setSuccess(result.message);
 
       setForm({

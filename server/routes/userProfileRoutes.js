@@ -3,7 +3,7 @@
 import express from "express";
 // import router from  express.Router();
 
-import auth from "../middleware/AuthMiddlware.js";
+import{ auth} from "../middleware/authMiddleware.js";
 import {
   createProfile,
   getProfileByUserId,
