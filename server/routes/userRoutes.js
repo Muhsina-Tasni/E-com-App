@@ -1,3 +1,5 @@
+//here i add something to test
+
 import  express from "express"
 // import  router from  express.Router();
 import {auth} from "../middleware/authMiddleware.js";
@@ -10,7 +12,7 @@ import {
   updateUser,
   deleteUser,} from "../controllers/userController.js"
 
-
+console.log("USER ROUTES LOADED");
 
   const router = express.Router();
 // Public routes
@@ -25,9 +27,30 @@ router.post("/login", loginUser);
 
 
 // 🔥 IMPORTANT: /me must come BEFORE /:id
-router.get("/me", auth, (req, res) => {
-  res.json(req.user);
+// router.get("/me", auth, (req, res) => {
+//   res.json(req.user);
+// });
+
+
+router.get("/test", (req, res) => {
+  res.json({ message: "User routes working" });
 });
+router.get("/hello", (req, res) => {
+  res.json({
+    message: "Hello      hello from new deployment"
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Protected routes

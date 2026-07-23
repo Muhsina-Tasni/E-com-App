@@ -19,30 +19,61 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      await registerUser(form);
+  //   try {
+  //     await registerUser(form);
 
-      Swal.fire({
-        toast: true,
-        position: "top",
-        timer: 3000,
-        showConfirmButton: false,
-        icon: "success",
-        title: "Account created successfully 📚",
-      });
+  //     Swal.fire({
+  //       toast: true,
+  //       position: "top",
+  //       timer: 3000,
+  //       showConfirmButton: false,
+  //       icon: "success",
+  //       title: "Account created successfully 📚",
+  //     });
 
-      navigate("/login");
-    } catch (err) {
-      Swal.fire({
-        title: "Registration Failed",
-        text: err?.message || "Please try again",
-        icon: "error",
-      });
-    }
-  };
+  //     navigate("/login");
+  //   } catch (err) {
+  //     Swal.fire({
+  //       title: "Registration Failed",
+  //       text: err?.message || "Please try again",
+  //       icon: "error",
+  //     });
+  //   }
+  // };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    console.log("1. Before API");
+
+    const res = await registerUser(form);
+
+    console.log("2. API finished", res);
+
+    Swal.fire({
+      toast: true,
+      position: "top",
+      timer: 3000,
+      showConfirmButton: false,
+      icon: "success",
+      title: "Account created successfully 📚",
+    });
+
+    console.log("3. Before navigate");
+
+    navigate("/login");
+
+    console.log("4. After navigate");
+  } catch (err) {
+    console.error("Register error:", err);
+  }
+};
+
+
 
   return (
     <section className="min-h-screen bg-stone-100 flex items-center justify-center px-6">

@@ -43,6 +43,13 @@ const instance = axios.create({
   },
 });
 
+
+
+
+console.log("API BASE:", import.meta.env.VITE_API_BASE);
+
+
+
 // ✅ Request interceptor (token)
 instance.interceptors.request.use(
   (config) => {
@@ -83,5 +90,8 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+
+
 
 export default instance;

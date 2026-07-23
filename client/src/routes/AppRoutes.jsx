@@ -22,8 +22,9 @@ const AppRoutes = () => {
       <Routes>
        <Route index element={<Home/>} />
         {/* Public */}
-        <Route path="/login" element={<Login />} />
+       
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Protected */}
         <Route path="/products"
