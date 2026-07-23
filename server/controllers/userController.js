@@ -36,83 +36,85 @@ console.log("🔥 authController file loaded");
 
 
 //  Register
- export const registerUser = async (req, res) => {
-  try {
-
-      console.log("📌 Register API hit");   // ✅ HERE
-    const { name, email, password, role } = req.body;
-
-
-console.log("📌 Sending email to:", email); // ✅ HERE
-
-    // 🔍 Check existing user
-    const existing = await User.findOne({ email });
-    if (existing) {
-      return res
-        .status(httpStatus.BAD_REQUEST)
-        .json({ message: messages.USER_ALREADY_EXISTS });
-    }
-
-    // 🔐 Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashed = await bcrypt.hash(password, salt);
-
-    // 👤 Create user
-    const user = new User({
-      name,
-      email,
-      password: hashed,
-      role: role || "user",
-    });
-
-    await user.save();
-
-    // 📧 Send welcome email
-    await sendEmail({
-      to: email,
-      subject: "Welcome to PAGETURNER🎉",
-      html: `
-        <h2>Hello ${name},</h2>
-        <p>Welcome to <b>My App</b>!</p>
-        <p>Your account has been successfully created.</p>
-        <p>You can now login and start shopping 🛒</p>
-        <br/>
-        <p>Thanks,<br/>PAGETURNER Team</p>
-      `,
-    });
-
-    // 🔒 Remove password from response
-    const userSafe = user.toObject();
-    delete userSafe.password;
-
-    res.status(httpStatus.CREATED).json({
-      message: messages.USER_REGISTERED,
-      user: userSafe,
-    });
-  } catch (err) {
-    console.error("Register error:", err);
-    res
-      .status(httpStatus.INTERNAL_SERVER_ERROR)
-      .json({ message: err.message || "Registration failed" });
-  }
-};
-
-
-
-
-// export const registerUser = async (req, res) => {
+//  export const registerUser = async (req, res) => {
 //   try {
-//     console.log("Register API hit");
 
-//     return res.status(201).json({
-//       message: "Test response",
+//       console.log("📌 Register API hit");   // ✅ HERE
+//     const { name, email, password, role } = req.body;
+
+
+// console.log("📌 Sending email to:", email); // ✅ HERE
+
+//     // 🔍 Check existing user
+//     const existing = await User.findOne({ email });
+//     if (existing) {
+//       return res
+//         .status(httpStatus.BAD_REQUEST)
+//         .json({ message: messages.USER_ALREADY_EXISTS });
+//     }
+
+//     // 🔐 Hash password
+//     const salt = await bcrypt.genSalt(10);
+//     const hashed = await bcrypt.hash(password, salt);
+
+//     // 👤 Create user
+//     const user = new User({
+//       name,
+//       email,
+//       password: hashed,
+//       role: role || "user",
+//     });
+
+//     await user.save();
+
+//     // 📧 Send welcome email
+//     await sendEmail({
+//       to: email,
+//       subject: "Welcome to PAGETURNER🎉",
+//       html: `
+//         <h2>Hello ${name},</h2>
+//         <p>Welcome to <b>My App</b>!</p>
+//         <p>Your account has been successfully created.</p>
+//         <p>You can now login and start shopping 🛒</p>
+//         <br/>
+//         <p>Thanks,<br/>PAGETURNER Team</p>
+//       `,
+//     });
+
+//     // 🔒 Remove password from response
+//     const userSafe = user.toObject();
+//     delete userSafe.password;
+
+//     res.status(httpStatus.CREATED).json({
+//       message: messages.USER_REGISTERED,
+//       user: userSafe,
 //     });
 //   } catch (err) {
-//     console.error(err);
+//     console.error("Register error:", err);
+//     res
+//       .status(httpStatus.INTERNAL_SERVER_ERROR)
+//       .json({ message: err.message || "Registration failed" });
 //   }
 // };
 
+
+
+export const registerUser = async (req, res) => {
+  try {
+    console.log("Register API hit");
+
+    return res.status(201).json({
+      message: "Test response",
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Login
+
+
+
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
