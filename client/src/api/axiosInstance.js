@@ -46,8 +46,9 @@ const instance = axios.create({
 
 
 
+// console.log("API BASE:", import.meta.env.VITE_API_BASE);
 console.log("API BASE:", import.meta.env.VITE_API_BASE);
-
+console.log("BASE URL:", instance.defaults.baseURL);
 
 
 // ✅ Request interceptor (token)
