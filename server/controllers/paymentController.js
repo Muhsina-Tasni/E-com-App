@@ -182,7 +182,7 @@
 import Stripe from "stripe";
 
 
-console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
+// console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
 
 export const createCheckoutSession = async (req, res) => {
   try {
@@ -196,6 +196,22 @@ export const createCheckoutSession = async (req, res) => {
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "No items provided" });
     }
+
+
+
+
+try {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+  const account = await stripe.accounts.retrieve();
+
+  console.log("Connected Stripe Account:", account.id);
+
+  // existing checkout code...
+} catch (err) {
+  console.error(err);
+}
+
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
