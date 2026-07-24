@@ -68,18 +68,18 @@ console.log("📌 Sending email to:", email); // ✅ HERE
     await user.save();
 
     // 📧 Send welcome email
-    // await sendEmail({
-    //   to: email,
-    //   subject: "Welcome to PAGETURNER🎉",
-    //   html: `
-    //     <h2>Hello ${name},</h2>
-    //     <p>Welcome to <b>My App</b>!</p>
-    //     <p>Your account has been successfully created.</p>
-    //     <p>You can now login and start shopping 🛒</p>
-    //     <br/>
-    //     <p>Thanks,<br/>PAGETURNER Team</p>
-    //   `,
-    // });
+    await sendEmail({
+      to: email,
+      subject: "Welcome to PAGETURNER🎉",
+      html: `
+        <h2>Hello ${name},</h2>
+        <p>Welcome to <b>My App</b>!</p>
+        <p>Your account has been successfully created.</p>
+        <p>You can now login and start shopping 🛒</p>
+        <br/>
+        <p>Thanks,<br/>PAGETURNER Team</p>
+      `,
+    });
 
     // 🔒 Remove password from response
     const userSafe = user.toObject();
