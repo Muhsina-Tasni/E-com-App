@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-// import sendEmail from "../utils/sendEmail.js"
 import { sendEmail } from "../utils/sendEmail.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -75,7 +74,7 @@ console.log("➡ Before sendEmail");
       subject: "Welcome to PAGETURNER🎉",
       html: `
         <h2>Hello ${name},</h2>
-        <p>Welcome to <b>My App</b>!</p>
+        <p>Welcome to <b>PAGETURNER</b>!</p>
         <p>Your account has been successfully created.</p>
         <p>You can now login and start shopping 🛒</p>
         <br/>
