@@ -1,6 +1,5 @@
 import API from "./axiosInstance";
 
-/** Coerce GET /category JSON into an array (handles [] or { categories: [] }). */
 export const normalizeCategoryList = (payload) => {
   if (Array.isArray(payload)) return payload;
   if (Array.isArray(payload?.categories)) return payload.categories;

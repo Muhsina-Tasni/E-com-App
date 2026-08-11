@@ -56,5 +56,3 @@ export const deleteProduct = async (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
-
-// export default { createProduct, getProducts, getProductById, updateProduct, deleteProduct };

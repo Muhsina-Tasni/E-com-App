@@ -1,6 +1,4 @@
 
-
-
 import CartItem  from "../models/CartItems.js"
 import Cart from "../models/Cart.js"
 import httpStatus from"../constants/httpStatus.js";
@@ -36,44 +34,6 @@ export const addCartItem = async (req, res) => {
   }
 };
 
-// Get cart items by user (with product details)
-// const getCartItemsByUser = async (req, res) => {
-//   try {
-//     const userId = req.params.userId;
-
-//     const items = await CartItem.aggregate([
-//       { $lookup: { from: "carts", localField: "cart_id", foreignField: "_id", as: "cart" } },
-//       { $unwind: "$cart" },
-//       { $match: { "cart.user_id": mongoose.Types.ObjectId(userId) } },
-//       {
-//         $lookup: {
-//           from: "products",
-//           localField: "product_id",
-//           foreignField: "_id",
-//           as: "product",
-//         },
-//       },
-//       { $unwind: "$product" },
-//       {
-//         $project: {
-//           _id: 1,
-//           quantity: 1,
-//           product: {
-//             _id: "$product._id",
-//             name: "$product.name",
-//             price: "$product.price",
-//             image: "$product.image",
-//             description: "$product.description",
-//           },
-//         },
-//       },
-//     ]);
-
-//     res.status(httpStatus.OK).json(items);
-//   } catch (err) {
-//     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
-//   }
-// };
 export const getCartItemsByUser = async (req, res) => {
   try {
     const userId = req.params.userId;

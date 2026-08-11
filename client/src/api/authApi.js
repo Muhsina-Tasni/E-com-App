@@ -22,16 +22,3 @@ export const registerUser = async (userData) => {
   }
 };
 
-
-
-// import API from "./axiosInstance";
-
-// export const loginUser = async (credentials) => {
-//   const res = await API.post("/users/login", credentials);
-//   return res.data;
-// };
-
-// export const registerUser = async (data) => {
-//   const res = await API.post("/users/register", data);
-//   return res.data;
-// };

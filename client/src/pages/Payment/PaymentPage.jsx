@@ -4,11 +4,7 @@ import { createCheckoutSession } from "../../api/paymentApi";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
-
-
 console.log(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
-
 
 
 const PaymentPage = () => {

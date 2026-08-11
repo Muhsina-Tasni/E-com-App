@@ -79,10 +79,3 @@ export const deleteProfile = async (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
-
-// export default {
-//   createProfile,
-//   getProfileByUserId,
-//   updateProfile,
-//   deleteProfile,
-// };

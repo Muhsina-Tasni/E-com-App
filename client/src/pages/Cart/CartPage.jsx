@@ -113,21 +113,7 @@ const navigate = useNavigate();
             {clearing ? "Clearing..." : "Clear Cart"}
           </button>
 
-          {/* <button
-            onClick={() => alert("Proceeding to checkout...")}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-          >
-            Proceed to Checkout
-          </button> */}
-{/* <button
-  // onClick={() => navigate("/checkout")}
-  onClick={() =>
-  navigate("/checkout", { state: { cartItems } }) // ✅ send cart
-}
-  className="px-4 py-2 bg-green-600 text-white rounded"
->
-  Proceed to Checkout
-</button> */}
+         
 <button
   onClick={() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));

@@ -1,4 +1,3 @@
-//here i add something to test
 
 import  express from "express"
 // import  router from  express.Router();
@@ -24,12 +23,6 @@ router.post("/register", registerUser);
 // @route  POST /api/users/login
 // @desc   Authenticated user
 router.post("/login", loginUser);
-
-
-// 🔥 IMPORTANT: /me must come BEFORE /:id
-// router.get("/me", auth, (req, res) => {
-//   res.json(req.user);
-// });
 
 
 router.get("/test", (req, res) => {

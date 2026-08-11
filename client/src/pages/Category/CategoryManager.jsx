@@ -43,11 +43,6 @@ const CategoryManager = ({ onCategoryAdded }) => {
       await fetchCategories();
       onCategoryAdded?.();
     }
-    //  catch (err) {
-    //   setError("Failed to add category");
-    //   console.error(err);
-    // }
-
 catch (err) {
   console.error("Backend error:", err.response?.data || err.message);
 
@@ -57,8 +52,6 @@ catch (err) {
     "Failed to add category"
   );
 }
-
-
   };
 
   return (
@@ -93,22 +86,6 @@ catch (err) {
         </button>
       </form>
 
-      {/* Category List */}
-      {/* <div className="border-t pt-3 space-y-2 max-h-48 overflow-y-auto">
-        {categories.length === 0 ? (
-          <p className="text-stone-500 text-sm">No categories yet.</p>
-        ) : (
-          categories.map((cat) => (
-            <div
-              key={cat._id}
-              className="border p-2 bg-stone-50 text-sm"
-            >
-              <p className="font-medium text-stone-800">{cat.name}</p>
-              <p className="text-stone-500">{cat.description}</p>
-            </div> */}
-          {/* ))
-        )}
-      </div> */}
     </div>
   );
 };

@@ -56,5 +56,3 @@ export const deleteOrderItem = async (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
-
-// export default { addOrderItem, getOrderItems, getOrderItemById, updateOrderItem, deleteOrderItem };

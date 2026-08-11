@@ -8,7 +8,6 @@ import messages from "../constants/messages.js";
 console.log("🔥 authController file loaded");
 
 
-// Register
 // const registerUser = async (req, res) => {
 //   try {
 //     const { name, email, password, role } = req.body;
@@ -69,10 +68,25 @@ console.log("✅ User saved");
     // 📧 Send welcome email
 console.log("➡ Before sendEmail");
 
-    await sendEmail({
-      to: email,
-      subject: "Welcome to PAGETURNER🎉",
-      html: `
+    // await sendEmail({
+    //   to: email,
+    //   subject: "Welcome to PAGETURNER🎉",
+    //   html: `
+    //     <h2>Hello ${name},</h2>
+    //     <p>Welcome to <b>PAGETURNER</b>!</p>
+    //     <p>Your account has been successfully created.</p>
+    //     <p>You can now login and start shopping 🛒</p>
+    //     <br/>
+    //     <p>Thanks,<br/>PAGETURNER Team</p>
+    //   `,
+    // });
+
+
+try {
+  await sendEmail({
+    to: email,
+    subject:"Welcome to PAGETURNER🎉" ,
+    html: `
         <h2>Hello ${name},</h2>
         <p>Welcome to <b>PAGETURNER</b>!</p>
         <p>Your account has been successfully created.</p>
@@ -80,7 +94,14 @@ console.log("➡ Before sendEmail");
         <br/>
         <p>Thanks,<br/>PAGETURNER Team</p>
       `,
-    });
+  });
+} catch (error) {
+  console.error("Email failed, but registration will continue:", error);
+}
+
+
+
+
 
 console.log("✅ After sendEmail");
 
@@ -100,24 +121,6 @@ console.log("✅ After sendEmail");
       .json({ message: err.message || "Registration failed" });
   }
 };
-
-
-
-// export const registerUser = async (req, res) => {
-//   try {
-//     console.log("Register API hit");
-
-//     return res.status(201).json({
-//       message: "Test response",
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// // };
-
-// Login
-
-
 
 export const loginUser = async (req, res) => {
   try {
@@ -141,9 +144,6 @@ export const loginUser = async (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
-
-
-
 
 
 //@desc    Get all user
@@ -199,9 +199,6 @@ export const deleteUser = async (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
   }
 };
-
-// export default { registerUser, loginUser, getUsers, getUserById, updateUser, deleteUser };
-
 
 
 

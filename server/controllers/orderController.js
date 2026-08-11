@@ -60,6 +60,3 @@ export const deleteOrder = async (req, res) => {
 };
 
 
-
-    // export default { createOrder, getOrders, getOrderById, updateOrder, deleteOrder };
- 

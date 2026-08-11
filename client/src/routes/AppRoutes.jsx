@@ -43,12 +43,7 @@ const AppRoutes = () => {
           }
         />
 
-
-
-
 <Route path="/checkout" element={<PaymentPage />} />
-
-
 
 <Route
   path="/profile"
@@ -58,9 +53,6 @@ const AppRoutes = () => {
     </ProtectedRoute>
   }
 />
-
-
-
 <Route path="/offer"
           element={
             <ProtectedRoute>
@@ -68,8 +60,6 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
-
-
 
 <Route path="/adminpage"
           element={
@@ -79,8 +69,6 @@ const AppRoutes = () => {
           }
         />
 
-
-
 <Route path="admin/categories"
           element={
             <ProtectedRoute>
@@ -89,15 +77,9 @@ const AppRoutes = () => {
           }
         />
 
-
-
-
-
       </Routes>
    <Footer/>
     </BrowserRouter>
-    
-   
   );
 };
 

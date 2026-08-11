@@ -11,10 +11,7 @@ const HomeSection = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);  //  moved INSIDE component
 
-   // 🔔 SweetAlert – Bookstore style
-
-
-
+   //  SweetAlert – Bookstore style
 
 const handleClick = () => {
   if (!user) {
@@ -49,12 +46,6 @@ const handleClick = () => {
     navigate("/products");
   }
 };
-
-
-
-
-
-
 
 const books = [
   {
@@ -98,8 +89,6 @@ const books = [
       "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=600&fit=crop",
   },
 ];
-
-
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % books.length);

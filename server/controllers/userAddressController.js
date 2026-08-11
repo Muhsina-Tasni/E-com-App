@@ -70,11 +70,3 @@ export const deleteAddress = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-// export default {
-//   createAddress,
-//   getAddresses,
-//   getAddressesById,
-//   updateAddress,
-//   deleteAddress,
-// }

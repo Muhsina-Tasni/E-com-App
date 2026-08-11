@@ -1,32 +1,4 @@
 
-
-// // src/api/axiosInstance.js
-// import axios from "axios";
-
-// const API_BASE =
-//   import.meta.env.VITE_API_BASE || "https://e-com-app-hjey.onrender.com";
-
-// const instance = axios.create({
-//   baseURL: API_BASE + "/api",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// });
-
-// // attach token automatically
-// instance.interceptors.request.use(
-//   (config) => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
-
-// export default instance;
-// src/api/axiosInstance.js
 import axios from "axios";
 
 const useLocalProxy =
@@ -44,14 +16,10 @@ const instance = axios.create({
 });
 
 
-
-
-// console.log("API BASE:", import.meta.env.VITE_API_BASE);
 console.log("API BASE:", import.meta.env.VITE_API_BASE);
 console.log("BASE URL:", instance.defaults.baseURL);
 
 
-// ✅ Request interceptor (token)
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -65,7 +33,7 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ✅ Response interceptor (better error handling)
+
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -91,8 +59,5 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-
-
 
 export default instance;

@@ -1,5 +1,4 @@
 
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -72,8 +71,6 @@ const handleSubmit = async (e) => {
     console.error("Register error:", err);
   }
 };
-
-
 
   return (
     <section className="min-h-screen bg-stone-100 flex items-center justify-center px-6">
