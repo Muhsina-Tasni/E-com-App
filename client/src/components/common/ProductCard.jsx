@@ -34,7 +34,7 @@ const handleAddToCart = async () => {
       quantity: 1,
     });
 
-    alert("Added to cart successfully ✅");
+    // alert("Added to cart successfully ✅");
   } catch (err) {
     console.error(err.response?.data || err.message);
     alert("Add to cart failed");

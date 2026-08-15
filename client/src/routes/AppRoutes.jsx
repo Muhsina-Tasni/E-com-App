@@ -12,6 +12,8 @@ import ProductPage from "../pages/Products/ProductPage";
 import CategoryManager from "../pages/Category/CategoryManager";
 import UserProfile from "../pages/Users/Profile";
 import PaymentPage from "../pages/Payment/PaymentPage";
+import AIRecommendation from "../components/AIRecommendation"
+
 
 const AppRoutes = () => {
   return (
@@ -23,6 +25,14 @@ const AppRoutes = () => {
        <Route index element={<Home/>} />
         {/* Public */}
        
+
+<Route
+  path="/ai-recommendations"
+  element={<AIRecommendation />}
+/>
+
+
+
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 

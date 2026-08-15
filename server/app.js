@@ -2,6 +2,7 @@
 import express from "express";
 import cors from "cors";
 
+import aiRoutes from "./routes/aiRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 });
 
 // API Routes
+app.use("/api/ai", aiRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/orders", orderRoutes);
@@ -43,6 +45,12 @@ app.use("/api/orderitem", orderItemRoutes);
 app.use("/api/cartitems", cartItemRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/admin", adminRoutes);
+
+
+
+
+
+
 
 // 404 Handler
 app.use((req, res) => {
