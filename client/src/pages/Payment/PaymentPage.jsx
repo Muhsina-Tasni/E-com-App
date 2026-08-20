@@ -1,6 +1,7 @@
 
 
 //payment page
+
 import { useContext } from "react";
 import { createCheckoutSession } from "../../api/paymentApi";
 import { AuthContext } from "../../context/AuthContext";

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 import { verifyPayment } from "../../api/paymentApi";
 
 const PaymentSuccess = () => {
