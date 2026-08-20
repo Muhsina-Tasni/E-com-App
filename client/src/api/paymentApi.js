@@ -12,3 +12,14 @@ export const createCheckoutSession = async (data) => {
     throw error.response?.data || { message: "Payment failed" };
   }
 };
+
+
+
+// Verify Stripe payment
+export const verifyPayment = async (sessionId) => {
+  const response = await axiosInstance.get(
+    `/payment/verify/${sessionId}`
+  );
+
+  return response.data;
+};

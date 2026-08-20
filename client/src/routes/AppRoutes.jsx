@@ -13,6 +13,10 @@ import CategoryManager from "../pages/Category/CategoryManager";
 import UserProfile from "../pages/Users/Profile";
 import PaymentPage from "../pages/Payment/PaymentPage";
 import AIRecommendation from "../components/AIRecommendation"
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/Payment/PaymentCancelled";
+
+
 
 
 const AppRoutes = () => {
@@ -29,6 +33,18 @@ const AppRoutes = () => {
 <Route
   path="/ai-recommendations"
   element={<AIRecommendation />}
+/>
+
+
+
+<Route
+  path="/payment-success"
+  element={<PaymentSuccess />}
+/>
+
+<Route
+  path="/payment-cancelled"
+  element={<PaymentCancelled />}
 />
 
 

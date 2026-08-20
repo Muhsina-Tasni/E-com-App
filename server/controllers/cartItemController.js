@@ -34,6 +34,46 @@ export const addCartItem = async (req, res) => {
   }
 };
 
+
+export const clearCartByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    if (!userId) {
+      return res.status(400).json({
+        message: "User ID is required",
+      });
+    }
+
+    // Find user's cart
+    const cart = await Cart.findOne({
+      user_id: userId,
+    });
+
+    if (!cart) {
+      return res.status(200).json({
+        message: "Cart is already empty",
+      });
+    }
+
+    // Delete all cart items
+    await CartItem.deleteMany({
+      cart_id: cart._id,
+    });
+
+    res.status(200).json({
+      message: "Cart cleared successfully",
+    });
+
+  } catch (error) {
+    console.error("Clear cart error:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 export const getCartItemsByUser = async (req, res) => {
   try {
     const userId = req.params.userId;

@@ -28,7 +28,7 @@ const ProductList = () => {
     <div className="min-h-screen  bg-stone-100 p-8 ">
 
 
-
+{/* ai recommentation */}
 <NavLink
   to="/ai-recommendations"
   className="fixed right-6 top-24 z-50"
@@ -49,7 +49,7 @@ const ProductList = () => {
   </div>
 </NavLink> 
 
-{/* <AIRecommendation /> */}
+
 
       <h2 className="text-2xl font-bold mb-6 text-center pt-15">Products</h2>
       {products.length === 0 ? (

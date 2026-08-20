@@ -5,6 +5,8 @@ import ProductList from "./ProductList";
 import AdminStats from "./ProductStats";
 import CategoryManager from "../Category/CategoryManager";
 
+
+
 const AddProduct = () => {
   const [form, setForm] = useState({
     name: "",
@@ -27,6 +29,8 @@ const AddProduct = () => {
       console.error("Category fetch error:", err);
     }
   };
+
+
 
   useEffect(() => {
     fetchCategories();
@@ -60,14 +64,40 @@ const AddProduct = () => {
 
   return (
     <>
+<div className="bg-stone-100 ">
+ <h2 className="text-5xl font-serif p-10 text-center">Admin Panel</h2>
+
       {/* Admin Top Section */}
       <section className="bg-stone-100 py-16 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
 
+
+{/* Right - Stats + Category Manager */}
+          <div className="space-y-6">
+            {/* <div className="bg-white border shadow-xl p-6">
+              <h3 className="text-xl font-serif mb-4">Store Overview</h3>
+              <AdminStats />
+            </div> */}
+
+<div className=" p-6 m-1">
+              <h3 className="text-4xl font-serif mb-4">Store Overview</h3>
+              <AdminStats />
+            </div>
+ 
+            <div className="bg-white shadow-xl p-6">
+              <h3 className="text-4xl font-serif mb-4">Category Manager</h3>
+              <CategoryManager onCategoryAdded={fetchCategories} />
+            </div>
+          </div>
+
+
+
           {/* Left - Add Product */}
+
+          {/* <h2 className="text-4xl font-serif mb-4">Add new books</h2> */}
           <div className="bg-white border border-stone-200 shadow-xl p-8 lg:col-span-2">
-            <h2 className="text-3xl font-serif mb-2">Admin Panel</h2>
-            <p className="text-stone-500 mb-6">Add new books</p>
+            {/* <h2 className="text-3xl font-serif mb-2">Admin Panel</h2> */}
+            <p className="text-4xl font-serif mb-4">Add new books</p>
 
             {error && <p className="text-red-500 mb-3">{error}</p>}
             {success && <p className="text-green-600 mb-3">{success}</p>}
@@ -104,29 +134,24 @@ const AddProduct = () => {
             </form>
           </div>
 
-          {/* Right - Stats + Category Manager */}
-          <div className="space-y-6">
-            <div className="bg-white border shadow-xl p-6">
-              <h3 className="text-xl font-serif mb-4">Store Overview</h3>
-              <AdminStats />
-            </div>
-
-            <div className="bg-white border shadow-xl p-6">
-              <h3 className="text-xl font-serif mb-4">Category Manager</h3>
-              <CategoryManager onCategoryAdded={fetchCategories} />
-            </div>
-          </div>
+         
         </div>
       </section>
 
       {/* Product List */}
       <section className="bg-stone-50 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl font-serif mb-6">All Products</h3>
+          {/* <h3 className="text-2xl font-serif mb-6">All Products</h3> */}
           <ProductList />
         </div>
       </section>
+      </div>
     </>
+
+
+
+
+    
   );
 };
 

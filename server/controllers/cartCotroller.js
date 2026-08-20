@@ -36,3 +36,26 @@ export const getCartByUser = async (req, res) => {
 };
 
 
+
+export const clearCart = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    await Cart.deleteMany({
+      user_id: userId,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Cart cleared successfully",
+    });
+
+  } catch (error) {
+    console.error("Clear cart error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to clear cart",
+    });
+  }
+};
