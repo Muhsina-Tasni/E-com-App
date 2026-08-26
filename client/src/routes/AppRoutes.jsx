@@ -11,9 +11,10 @@ import Home from "../pages/Home"
 import ProductPage from "../pages/Products/ProductPage";
 import CategoryManager from "../pages/Category/CategoryManager";
 import UserProfile from "../pages/Users/Profile";
-import PaymentPage from "../pages/Payment/PaymentPage";
 import AIRecommendation from "../components/AIRecommendation"
-
+import OrderList from "../pages/Order/OrderList";
+import Checkout from "../pages/Order/Checkout"
+import PaymentSuccess from "../pages/Payment/paymentSuccess";
 
 const AppRoutes = () => {
   return (
@@ -53,7 +54,36 @@ const AppRoutes = () => {
           }
         />
 
-<Route path="/checkout" element={<PaymentPage />} />
+<Route
+  path="/checkout"
+  element={
+    <ProtectedRoute>
+      <Checkout />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/payment-success"
+  element={
+    <ProtectedRoute>
+      <PaymentSuccess />
+    </ProtectedRoute>
+  }
+/>
+
+
+
+
+<Route
+  path="/orders"
+  element={
+    <ProtectedRoute>
+      <OrderList />
+    </ProtectedRoute>
+  }
+/>
+
 
 <Route
   path="/profile"

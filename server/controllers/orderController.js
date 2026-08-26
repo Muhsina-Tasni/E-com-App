@@ -4,27 +4,69 @@ import messages from "../constants/messages.js";
 
 
 // Create Order
+
 export const createOrder = async (req, res) => {
   try {
-    const { user_id, shippingAddress, orderDate, status, totalAmount } = req.body;
-    const order = new Order({ user_id, shippingAddress, orderDate, status, totalAmount });
+
+    const {
+      shippingAddress,
+      totalAmount,
+    } = req.body;
+
+    const order = new Order({
+
+      user_id: req.user.id,
+
+      shippingAddress,
+
+      totalAmount,
+
+      status: "pending",
+
+    });
+
     await order.save();
-    res.status(httpStatus.CREATED).json({ message: messages.ORDER_CREATED, order });
+
+    res.status(201).json({
+      message: "Order created successfully",
+      order,
+    });
+
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
+
+    res.status(500).json({
+      message: err.message,
+    });
+
   }
 };
-
 
 // Get all orders
+
 export const getOrders = async (req, res) => {
+
   try {
-    const orders = await Order.find();
-    res.status(httpStatus.OK).json(orders);
+
+    const orders = await Order.find({
+      user_id: req.user.id,
+    }).sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json(orders);
+
   } catch (err) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message });
+
+    res.status(500).json({
+      message: err.message,
+    });
+
   }
+
 };
+
+
+
 
 // Get order by ID
 export const getOrderById = async (req, res) => {

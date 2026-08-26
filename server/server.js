@@ -1,10 +1,14 @@
 import "dotenv/config"; 
-//  changes in here 
-// import dotenv from "dotenv"
+
 import app from "./app.js";
 import connectDB from "./config/db.js";
+import dns from "node:dns";
 
-// dotenv.config();
+
+// Use Google DNS for MongoDB Atlas SRV resolution
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
+
 
 const PORT = process.env.PORT || 7000;
 

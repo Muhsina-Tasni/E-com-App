@@ -72,6 +72,14 @@ const Navbar = () => {
 
 
 
+            <NavLink
+              to="/orders"
+              className={({ isActive }) => (isActive ? activeClass : normalClass)}
+            >
+              ORDERS
+            </NavLink>
+
+
 
 
 
@@ -140,6 +148,18 @@ const Navbar = () => {
             >
               OFFER
             </NavLink>
+
+
+
+            <NavLink
+              to="/orders"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={({ isActive }) => (isActive ? activeClass : normalClass)}
+            >
+              ORDERS
+            </NavLink>
+
+
 
             <button onClick={handleCart} className="text-left hover:text-amber-600">
               CART

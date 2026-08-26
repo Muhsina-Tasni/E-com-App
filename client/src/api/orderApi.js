@@ -11,7 +11,7 @@ export const createOrder = async (data) => {
 
 export const getUserOrders = async () => {
   try {
-    const res = await API.get("/orders/user");
+    const res = await API.get("/orders");
     return res.data;
   } catch (error) {
     throw error.response?.data || { message: "Cannot load orders" };

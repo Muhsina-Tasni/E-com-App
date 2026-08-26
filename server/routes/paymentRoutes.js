@@ -1,12 +1,26 @@
 
-// export default router;
+
 import express from "express";
-import { createCheckoutSession } from "../controllers/paymentController.js";
-import  {auth } from "../middleware/authMiddleware.js"; // if you use auth
+
+import {
+  createCheckoutSession,
+  verifyPayment,
+} from "../controllers/paymentController.js";
+
+import { auth } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// ✅ Protected route (recommended)
-router.post("/create-checkout-session", auth, createCheckoutSession);
+router.post(
+  "/create-checkout-session",
+  auth,
+  createCheckoutSession
+);
+
+router.post(
+  "/verify-payment",
+  auth,
+  verifyPayment
+);
 
 export default router;
