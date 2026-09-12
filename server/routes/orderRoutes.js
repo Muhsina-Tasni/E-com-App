@@ -4,7 +4,6 @@ import{ auth} from "../middleware/authMiddleware.js"
 import  { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } from "../controllers/orderController.js";
 
 
-
 const router = express.Router();
 router.post("/", auth, createOrder);
 router.get("/", auth, getOrders);

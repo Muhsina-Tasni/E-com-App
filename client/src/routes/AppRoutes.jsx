@@ -15,6 +15,7 @@ import AIRecommendation from "../components/AIRecommendation"
 import OrderList from "../pages/Order/OrderList";
 import Checkout from "../pages/Order/Checkout"
 import PaymentSuccess from "../pages/Payment/paymentSuccess";
+import AdminOrders from "../pages/Admin/AdminOrders";
 
 const AppRoutes = () => {
   return (
@@ -32,7 +33,10 @@ const AppRoutes = () => {
   element={<AIRecommendation />}
 />
 
-
+<Route
+  path="/admin/orders"
+  element={<AdminOrders />}
+/>
 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

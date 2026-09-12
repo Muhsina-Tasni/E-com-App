@@ -1,185 +1,9 @@
 
-
-
-// import { useEffect, useState } from "react";
-// import { getUserOrders } from "../../api/orderApi";
-
-// const OrderList = () => {
-//   const [orders, setOrders] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchOrders = async () => {
-//       try {
-//         const data = await getUserOrders();
-//         setOrders(data || []);
-//       } catch (error) {
-//         console.error("Failed to load orders:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchOrders();
-//   }, []);
-
-//   if (loading) {
-//     return (
-//       <div className="p-10 text-center">
-//         Loading orders...
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="min-h-screen bg-stone-100 py-10 px-4">
-//       <div className="max-w-5xl mx-auto">
-
-//         <h1 className="text-3xl font-bold mb-8">
-//           My Orders
-//         </h1>
-
-//         {orders.length === 0 ? (
-//           <div className="bg-white p-8 rounded-lg shadow text-center">
-//             <p className="text-gray-500">
-//               You haven't placed any orders yet.
-//             </p>
-//           </div>
-//         ) : (
-//           <div className="space-y-6">
-
-//             {orders.map((order) => (
-//               <div
-//                 key={order._id}
-//                 className="bg-white p-6 rounded-lg shadow"
-//               >
-
-//                 {/* Order Information */}
-//                 <div className="flex flex-col md:flex-row md:justify-between gap-4">
-
-//                   <div>
-//                     <p className="text-sm text-gray-500">
-//                       Order ID
-//                     </p>
-
-//                     <p className="font-medium">
-//                       {order._id}
-//                     </p>
-//                   </div>
-
-//                   <div>
-//                     <p className="text-sm text-gray-500">
-//                       Date
-//                     </p>
-
-//                     <p>
-//                       {new Date(
-//                         order.orderDate
-//                       ).toLocaleDateString()}
-//                     </p>
-//                   </div>
-
-//                   <div>
-//                     <p className="text-sm text-gray-500">
-//                       Status
-//                     </p>
-
-//                     <span className="inline-block mt-1 px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
-//                       {order.status}
-//                     </span>
-//                   </div>
-
-//                   <div>
-//                     <p className="text-sm text-gray-500">
-//                       Total
-//                     </p>
-
-//                     <p className="font-bold text-lg">
-//                       ₹
-//                       {Number(
-//                         order.totalAmount
-//                       ).toFixed(2)}
-//                     </p>
-//                   </div>
-
-//                 </div>
-
-//                 {/* Ordered Products */}
-//                 <div className="border-t mt-5 pt-5">
-
-//                   <p className="font-semibold mb-3">
-//                     Ordered Products
-//                   </p>
-
-//                   <div className="space-y-2">
-
-//                     {order.items?.map((item, index) => (
-//                       <div
-//                         key={item._id || index}
-//                         className="flex justify-between items-center bg-stone-50 p-3 rounded"
-//                       >
-
-//                         <div>
-//                           <p className="font-medium">
-//                             {item.product?.name ||
-//                               item.productName ||
-//                               "Product"}
-//                           </p>
-
-//                           <p className="text-sm text-gray-500">
-//                             Quantity: {item.quantity}
-//                           </p>
-//                         </div>
-
-//                       </div>
-//                     ))}
-
-//                   </div>
-
-//                 </div>
-
-//                 {/* Delivery Address */}
-//                 <div className="border-t mt-5 pt-5">
-
-//                   <p className="font-semibold mb-2">
-//                     Delivery Address
-//                   </p>
-
-//                   <p className="text-gray-600">
-//                     {order.shippingAddress?.street}
-//                   </p>
-
-//                   <p className="text-gray-600">
-//                     {order.shippingAddress?.city},{" "}
-//                     {order.shippingAddress?.state}
-//                   </p>
-
-//                   <p className="text-gray-600">
-//                     {order.shippingAddress?.country} -{" "}
-//                     {order.shippingAddress?.pincode}
-//                   </p>
-
-//                 </div>
-
-//               </div>
-//             ))}
-
-//           </div>
-//         )}
-
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default OrderList;
-
-
 import { useEffect, useState } from "react";
-import { getUserOrders } from "../../api/orderApi";
+import { getAllOrders } from "../../api/adminApi";
 
-const OrderList = () => {
-
+const AdminOrders = () => {
+console.log("🔥 ADMIN ORDERS PAGE LOADED");
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -189,16 +13,17 @@ const OrderList = () => {
 
       try {
 
-        const data = await getUserOrders();
+        const data = await getAllOrders();
 
-        console.log("Orders received:", data);
+
+        console.log("All orders received:", data);
 
         setOrders(data || []);
 
       } catch (error) {
 
         console.error(
-          "Failed to load orders:",
+          "Failed to load all orders:",
           error
         );
 
@@ -207,6 +32,7 @@ const OrderList = () => {
         setLoading(false);
 
       }
+
     };
 
     fetchOrders();
@@ -227,10 +53,10 @@ const OrderList = () => {
 
     <div className="min-h-screen bg-stone-100 py-10 px-4">
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
 
         <h1 className="text-3xl font-bold mb-8">
-          My Orders
+          All Orders
         </h1>
 
 
@@ -239,7 +65,7 @@ const OrderList = () => {
           <div className="bg-white p-8 rounded-lg shadow text-center">
 
             <p className="text-gray-500">
-              You haven't placed any orders yet.
+              No orders have been placed yet.
             </p>
 
           </div>
@@ -255,9 +81,9 @@ const OrderList = () => {
                 className="bg-white p-6 rounded-lg shadow"
               >
 
-                {/* ORDER INFORMATION */}
+                {/* ORDER + CUSTOMER INFORMATION */}
 
-                <div className="flex flex-col md:flex-row md:justify-between gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
 
                   <div>
 
@@ -267,6 +93,24 @@ const OrderList = () => {
 
                     <p className="font-medium break-all">
                       {order._id}
+                    </p>
+
+                  </div>
+
+
+                  <div>
+
+                    <p className="text-sm text-gray-500">
+                      Customer
+                    </p>
+
+                    <p className="font-medium">
+                      {order.user_id?.name ||
+                        "Unknown reader"}
+                    </p>
+
+                    <p className="text-sm text-gray-500">
+                      {order.user_id?.email || ""}
                     </p>
 
                   </div>
@@ -339,8 +183,6 @@ const OrderList = () => {
                           className="flex items-center gap-4 border rounded-lg p-4"
                         >
 
-                          {/* PRODUCT IMAGE */}
-
                           <img
                             src={
                               item.product_id?.image ||
@@ -353,8 +195,6 @@ const OrderList = () => {
                             className="w-20 h-24 object-cover rounded"
                           />
 
-
-                          {/* PRODUCT DETAILS */}
 
                           <div className="flex-1">
 
@@ -376,8 +216,6 @@ const OrderList = () => {
 
                           </div>
 
-
-                          {/* ITEM TOTAL */}
 
                           <div className="text-right">
 
@@ -445,8 +283,7 @@ const OrderList = () => {
     </div>
 
   );
-
 };
 
-export default OrderList;
+export default AdminOrders;
 

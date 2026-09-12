@@ -1,5 +1,5 @@
 
-
+import { ShoppingCart} from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -82,11 +82,14 @@ const navigate = useNavigate();
 
   if (loading) return <div className="p-4">Loading cart...</div>;
   if (!user) return <div className="p-4">Please login to view your cart.</div>;
-  if (!cartItems.length) return <div className="p-4">Your cart is empty.</div>;
+  if (!cartItems.length) return <div className="p-20 text-center ">
+    <div>
+    <ShoppingCart  className="w-16 h-16 mx-auto text-center"/>
+    </div> Your cart is empty.</div>;
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
+      <h1 className="text-2xl font-bold m-6">Your Cart</h1>
 
       {/* Cart Items */}
       {cartItems.map((item) => (
@@ -113,16 +116,6 @@ const navigate = useNavigate();
             {clearing ? "Clearing..." : "Clear Cart"}
           </button>
 
-{/*          
-<button
-  onClick={() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    navigate("/checkout");
-  }}
-  className="px-4 py-2 bg-green-600 text-white rounded"
->
-  Proceed to Checkout
-</button> */}
 
 <button
   onClick={() => {
