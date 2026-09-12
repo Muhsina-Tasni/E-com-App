@@ -18,14 +18,6 @@ export const createAddress = async (addressData) => {
   return res.data;
 };
 
-// export const addAddress = async (data) => {
-//   try {
-//     const res = await API.post("/address", data);
-//     return res.data;
-//   } catch (error) {
-//     throw error.response?.data || { message: "Adding address failed" };
-//   }
-// };
 
 export const updateAddress = async (id, data) => {
   try {

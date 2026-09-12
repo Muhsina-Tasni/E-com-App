@@ -18,31 +18,6 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     await registerUser(form);
-
-  //     Swal.fire({
-  //       toast: true,
-  //       position: "top",
-  //       timer: 3000,
-  //       showConfirmButton: false,
-  //       icon: "success",
-  //       title: "Account created successfully 📚",
-  //     });
-
-  //     navigate("/login");
-  //   } catch (err) {
-  //     Swal.fire({
-  //       title: "Registration Failed",
-  //       text: err?.message || "Please try again",
-  //       icon: "error",
-  //     });
-  //   }
-  // };
-
 const handleSubmit = async (e) => {
   e.preventDefault();
 

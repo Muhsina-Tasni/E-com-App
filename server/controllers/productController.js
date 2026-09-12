@@ -3,7 +3,6 @@ import httpStatus from "../constants/httpStatus.js";
 import messages from "../constants/messages.js";
 
 
-
 export const createProduct = async (req, res) => {
   try {
     const { name, description, price, stock, category_id, image } = req.body;

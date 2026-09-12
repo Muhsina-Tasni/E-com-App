@@ -1,5 +1,4 @@
 
-
 import UserProfile from "../models/UserProfile.js";
 import httpStatus from "../constants/httpStatus.js";
 import messages  from "../constants/messages.js";

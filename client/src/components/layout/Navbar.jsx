@@ -1,13 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import {ShoppingCart,User,Menu,X,} from "lucide-react";
 
-import {
-  ShoppingCart,
-  User,
-  Menu,
-  X,
-} from "lucide-react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -71,15 +66,12 @@ const Navbar = () => {
             </NavLink>
 
 
-
-            <NavLink
-              to="/orders"
-              className={({ isActive }) => (isActive ? activeClass : normalClass)}
-            >
-              ORDERS
-            </NavLink>
-
-
+<NavLink
+  to={user?.role === "admin" ? "/admin/orders" : "/orders"}
+  className={({ isActive }) => (isActive ? activeClass : normalClass)}
+>
+  ORDERS
+</NavLink>
 
 
 
@@ -89,26 +81,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-5">
             <ShoppingCart onClick={handleCart} className="cursor-pointer hover:text-amber-600" />
             <User onClick={handleProfile} className="cursor-pointer hover:text-amber-600" />
-          
-{/* <NavLink
-  to="/ai-recommendations"
-  // className="fixed right-6 top-24 z-50"
->
-  <div
-    className="flex items-center justify-center p-1
-               rounded-full
-               bg-gray-900
-               text-3xl md:text-3xl
-               shadow-xl
-               cursor-pointer
-               transition-all duration-300
-               hover:scale-110
-               hover:shadow-2xl
-               hover:bg-amber-600"
-  >
-    🤖
-  </div>
-</NavLink>  */}
+        
 
 
           </div>
@@ -149,16 +122,13 @@ const Navbar = () => {
               OFFER
             </NavLink>
 
-
-
-            <NavLink
-              to="/orders"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={({ isActive }) => (isActive ? activeClass : normalClass)}
-            >
-              ORDERS
-            </NavLink>
-
+<NavLink
+  to={user?.role === "admin" ? "/admin/orders" : "/orders"}
+  onClick={() => setIsMobileMenuOpen(false)}
+  className={({ isActive }) => (isActive ? activeClass : normalClass)}
+>
+  ORDERS
+</NavLink>
 
 
             <button onClick={handleCart} className="text-left hover:text-amber-600">
@@ -168,21 +138,6 @@ const Navbar = () => {
             <button onClick={handleProfile} className="text-left hover:text-amber-600">
               PROFILE
             </button>
-
-{/* <NavLink
-  to="/ai-recommendations"
-  
->
-  <div
-    className=" text-3xl md:text-3xl
-               cursor-pointer
-               transition-all duration-300"
-  >
-    🤖
-  </div>
-</NavLink>  */}
-
-
 
           </div>
         </div>

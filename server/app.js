@@ -47,11 +47,6 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/admin", adminRoutes);
 
 
-
-
-
-
-
 // 404 Handler
 app.use((req, res) => {
     res.status(404).json({

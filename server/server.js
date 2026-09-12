@@ -8,11 +8,7 @@ import dns from "node:dns";
 // Use Google DNS for MongoDB Atlas SRV resolution
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
-
-
 const PORT = process.env.PORT || 7000;
-
-
 
 ///ai
 console.log(

@@ -5,32 +5,6 @@ import jwt from "jsonwebtoken";
 import httpStatus from "../constants/httpStatus.js";
 import messages from "../constants/messages.js";
 
-console.log("🔥 authController file loaded");
-
-
-// const registerUser = async (req, res) => {
-//   try {
-//     const { name, email, password, role } = req.body;
-
-//     const existing = await User.findOne({ email });
-//     if (existing) return res.status(httpStatus.BAD_REQUEST).json({ message: messages.USER_ALREADY_EXISTS });
-
-//     const salt = await bcrypt.genSalt(10);
-//     const hashed = await bcrypt.hash(password, salt);
-
-//     const user = new User({ name, email, password: hashed, role: role || "user" });
-//     await user.save();
-
-//     const userSafe = user.toObject();
-//     delete userSafe.password;
-
-//     res.status(httpStatus.CREATED).json({ message: messages.USER_REGISTERED, user: userSafe });
-//   } catch (err) {
-//     console.error("Register error:", err);
-//     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: err.message || "Registration failed" });
-//   }
-// };
-
 
 
 //  Register
@@ -68,19 +42,6 @@ console.log("✅ User saved");
     // 📧 Send welcome email
 console.log("➡ Before sendEmail");
 
-    // await sendEmail({
-    //   to: email,
-    //   subject: "Welcome to PAGETURNER🎉",
-    //   html: `
-    //     <h2>Hello ${name},</h2>
-    //     <p>Welcome to <b>PAGETURNER</b>!</p>
-    //     <p>Your account has been successfully created.</p>
-    //     <p>You can now login and start shopping 🛒</p>
-    //     <br/>
-    //     <p>Thanks,<br/>PAGETURNER Team</p>
-    //   `,
-    // });
-
 
 try {
   await sendEmail({
@@ -98,12 +59,6 @@ try {
 } catch (error) {
   console.error("Email failed, but registration will continue:", error);
 }
-
-
-
-
-
-console.log("✅ After sendEmail");
 
 
     // 🔒 Remove password from response
@@ -132,8 +87,17 @@ export const loginUser = async (req, res) => {
     if (!isMatch) return res.status(httpStatus.BAD_REQUEST).json({ message: messages.INVALID_CREDENTIALS });
 
     // Sign token with flat id field
-    const payload = { id: user._id };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d" });
+    
+const payload = {
+  id: user._id,
+  role: user.role,
+};
+
+const token = jwt.sign(
+  payload,
+  process.env.JWT_SECRET,
+  { expiresIn: "1d" }
+);
 
     const userSafe = user.toObject();
     delete userSafe.password;
